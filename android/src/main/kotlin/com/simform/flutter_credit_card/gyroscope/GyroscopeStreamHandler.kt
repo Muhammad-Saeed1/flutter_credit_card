@@ -15,9 +15,7 @@ internal class GyroscopeStreamHandler(
 ) : EventChannel.StreamHandler {
     private var sensorEventListener: SensorEventListener? = null
 
-    private val sensor: Sensor? by lazy(LazyThreadSafetyMode.NONE) {
-        sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
-    }
+    private val sensor: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
 
     override fun onListen(arguments: Any?, events: EventSink) {
         sensorEventListener = createSensorEventListener(events)
@@ -26,7 +24,6 @@ internal class GyroscopeStreamHandler(
             sensorManager.registerListener(sensorEventListener, it, 16666)
         } ?: events.error("SENSOR_ERROR", "Gyroscope sensor not available", null)
     }
-
 
     override fun onCancel(arguments: Any?) = sensorManager.unregisterListener(sensorEventListener)
 
