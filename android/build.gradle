@@ -1,8 +1,10 @@
+package android
+
 group 'com.simform.flutter_credit_card'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.7.10'
+    ext.kotlin_version = '1.8.22'
     repositories {
         google()
         mavenCentral()
